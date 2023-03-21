@@ -1,0 +1,36 @@
+$button-color-primary: lightblue;
+$button-color-secondary: lightgrey;
+
+$text-color-primary: #000000;
+$text-color-secondary: #ffffff;
+
+.button-array {
+  display: flex;
+}
+
+.button {
+	background-color: $button-color-primary;
+	width: 100px;
+	height: 100px;
+	border: none;
+	border-radius: 2px;
+	margin: 5px;
+	box-shadow: 1px 1px 1px 1px $button-color-secondary;
+	cursor: pointer;
+  font-size: larger;
+
+    &:hover {
+        background-color: $button-color-secondary;
+        color: $text-color-secondary;
+    }
+
+    &.active {
+        animation: rotateX 1s;
+    }
+}
+
+@keyframes rotateX {
+	100% {
+		transform: rotateX(360deg);
+	}
+}
