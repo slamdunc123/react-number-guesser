@@ -85,6 +85,7 @@ function App() {
 	return (
 		<div className='App'>
 			<header className='App-header'>
+        <h1>Number Guesser</h1>
 				<AnswerResults resultsMessageArr={resultsMessageArr} />
 				<NumberAnswers blockArr={blockArr} />
 				<Numbers

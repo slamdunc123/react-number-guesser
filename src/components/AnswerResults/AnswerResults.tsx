@@ -8,7 +8,7 @@ const AnswerResults = ({ resultsMessageArr }: PropsInt) => {
 	return (
 		<div className={styles.container}>
 			{resultsMessageArr.map((result, index) => (
-				<div className={styles.result} key={index}>
+				<div className={styles.result} key={index} data-testid="result-message">
 					{result}
 				</div>
 			))}
