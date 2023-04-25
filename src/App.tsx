@@ -13,15 +13,15 @@ import {
 	isChosenNumberOneAway,
 	isChosenNumberTwoAway,
 } from './utils/checkValue';
+import Controls from './components/Controls/Controls';
 
 function App() {
-	const [blockArr, setBlockArr] = useState(['', '', '', '']);
-	const [resultsMessageArr, setResultsMessageArr] = useState([
-		'',
-		'',
-		'',
-		'',
-	]);
+	const initialBlockArrState = ['', '', '', ''];
+	const initialResulsMessageArrState = ['', '', '', ''];
+	const [blockArr, setBlockArr] = useState(initialBlockArrState);
+	const [resultsMessageArr, setResultsMessageArr] = useState(
+		initialResulsMessageArrState
+	);
 	const [activeBlock, setActiveBlock] = useState(0);
 	const [answerIndex, setAnswerIndex] = useState(0);
 
@@ -33,6 +33,9 @@ function App() {
 	const secondNumberInNumbersArr = numbersArr[1];
 	const lastNumberInNumbersArr = numbersArr[numbersArr.length - 1];
 	const secondToLastNumberInNumbersArr = numbersArr[numbersArr.length - 2];
+
+	const lastMessageInResultsMessageArr =
+		resultsMessageArr[resultsMessageArr.length - 1];
 
 	// TODO: refactor
 	const isChosenNumberCorrect = (value: number) => {
@@ -82,16 +85,31 @@ function App() {
 		}
 	};
 
+	const handleOnPlayAgainButton = () => {
+		console.log('handlePlayAgainButton fired');
+		setActiveBlock(0);
+		setBlockArr(initialBlockArrState);
+		setResultsMessageArr(initialResulsMessageArrState);
+		setActiveBlock(0);
+		setAnswerIndex(0);
+	};
+	console.log(blockArr.length);
+
 	return (
 		<div className='App'>
 			<header className='App-header'>
-        <h1>Number Guesser</h1>
+				<h1>Number Guesser</h1>
 				<AnswerResults resultsMessageArr={resultsMessageArr} />
 				<NumberAnswers blockArr={blockArr} />
 				<Numbers
 					numbersArr={numbersArr}
 					handleNumberButtonOnClick={handleNumberButtonOnClick}
 				/>
+				{lastMessageInResultsMessageArr === CORRECT && (
+					<Controls
+						handleOnPlayAgainButton={handleOnPlayAgainButton}
+					/>
+				)}
 			</header>
 		</div>
 	);
